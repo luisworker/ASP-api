@@ -20,8 +20,8 @@ namespace ASP_api
                 defaults: new { id = RouteParameter.Optional }
             );
             //Para enviar todos los controladores en json serializados
-            //var formatoControler = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            //formatoControler.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+            var formatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            formatter.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
         }
     }
 }
