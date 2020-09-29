@@ -25,6 +25,7 @@ namespace ASP_api.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Mascotas> Mascotas { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

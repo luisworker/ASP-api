@@ -5,17 +5,30 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="APIProyectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Mascotas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Mascota" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="idDueño" Type="int" Nullable="false" />
+          <Property Name="idDireccion" Type="int" Nullable="false" />
+          <Property Name="idHClinica" Type="int" Nullable="false" />
+          <Property Name="Animal" Type="varchar" MaxLength="50" />
+          <Property Name="Raza" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="idUser" />
           </Key>
-          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="status" Type="int" />
           <Property Name="token" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="APIProyectModelStoreContainer">
+          <EntitySet Name="Mascotas" EntityType="Self.Mascotas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -23,13 +36,26 @@
     <edmx:ConceptualModels>
       <Schema Namespace="APIProyectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="APIProyectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Mascotas" EntityType="APIProyectModel.Mascotas" />
           <EntitySet Name="User" EntityType="APIProyectModel.User" />
         </EntityContainer>
+        <EntityType Name="Mascotas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Mascota" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="idDueño" Type="Int32" Nullable="false" />
+          <Property Name="idDireccion" Type="Int32" Nullable="false" />
+          <Property Name="idHClinica" Type="Int32" Nullable="false" />
+          <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Raza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="idUser" />
           </Key>
-          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="pass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
@@ -41,6 +67,19 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="APIProyectModelStoreContainer" CdmEntityContainer="APIProyectEntities">
+          <EntitySetMapping Name="Mascotas">
+            <EntityTypeMapping TypeName="APIProyectModel.Mascotas">
+              <MappingFragment StoreEntitySet="Mascotas">
+                <ScalarProperty Name="Raza" ColumnName="Raza" />
+                <ScalarProperty Name="Animal" ColumnName="Animal" />
+                <ScalarProperty Name="idHClinica" ColumnName="idHClinica" />
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="idDueño" ColumnName="idDueño" />
+                <ScalarProperty Name="nombre_Mascota" ColumnName="nombre_Mascota" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="APIProyectModel.User">
               <MappingFragment StoreEntitySet="User">
