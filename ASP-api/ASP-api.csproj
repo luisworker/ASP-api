@@ -183,6 +183,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDBapi.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>ModelDBapi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VMLoguin.cs" />
     <Compile Include="Models\ws\Reply.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
