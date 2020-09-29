@@ -35,6 +35,7 @@ namespace ASP_api.Controllers
                         var guid = Guid.NewGuid().ToString();
                         reply.Datos = guid;
                         lst.First().token = guid;
+                        db.Entry(lst.First()).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                         reply.Message = "OKOK";
                     }
